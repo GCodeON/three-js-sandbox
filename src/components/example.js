@@ -48,28 +48,37 @@ export default function Example() {
     scene.add(axesHelper);
 
     // Resize
-    function onWindowResize() {
+
+
+    window.addEventListener( 'resize', () => {
       renderer.setSize( window.innerWidth, window.innerHeight );
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
   
       renderer.setSize( window.innerWidth, window.innerHeight );
-    }
+    } );
 
-    window.addEventListener( 'resize', onWindowResize );
+    const cursor = {
+      x: 0,
+      y: 0
+    }
+    window.addEventListener('mousemove', (event) => {
+      cursor.x = - (event.clientX / window.innerWidth - 0.5);
+      cursor.y = event.clientY / window.innerHeight - 0.5;
+    })
 
     const clock = new THREE.Clock();
 
-    gsap.to(cube.position, {
-      x       : 2,
-      duration: 1,
-      delay   : 1
-    })
-    gsap.to(cube.position, {
-      x       : -2,
-      duration: 1,
-      delay   : 2
-    })
+    // gsap.to(cube.position, {
+    //   x       : 2,
+    //   duration: 1,
+    //   delay   : 1
+    // })
+    // gsap.to(cube.position, {
+    //   x       : -2,
+    //   duration: 1,
+    //   delay   : 2
+    // })
 
     const animate = () => {
       // const elapsedTime = clock.getElapsedTime();
@@ -77,6 +86,10 @@ export default function Example() {
       // group.rotation.x = Math.sin(elapsedTime);
       // group.position.y = Math.cos(elapsedTime);
       // group.position.x = Math.sin(elapsedTime);
+
+      camera.position.x = cursor.x * 10;
+      camera.position.y = cursor.y * 10;
+      // camera.lookAt(new THREE.Vector3());
 
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
