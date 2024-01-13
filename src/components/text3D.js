@@ -12,7 +12,7 @@ export default function Text3D({display, color}) {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
     
-    camera.position.set(0, -400, 600);
+    camera.position.set(0, 0, 500);
 
     scene.background = new THREE.Color(0xf0f0f0);
 
@@ -97,6 +97,16 @@ export default function Text3D({display, color}) {
     controls.addEventListener('change', () => {renderer.render( scene, camera)})
 
 
+    // const cursor = {
+    //   x: 0,
+    //   y: 0
+    // }
+    // window.addEventListener('mousemove', (event) => {
+    //   cursor.x = - (event.clientX / window.innerWidth - 0.5);
+    //   cursor.y = event.clientY / window.innerHeight - 0.5;
+    // })
+
+
     window.addEventListener( 'resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -108,6 +118,8 @@ export default function Text3D({display, color}) {
 
 
     const animate = () => {
+      // camera.position.x = cursor.x * 200;
+      // camera.position.y = cursor.y * 200;
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };
