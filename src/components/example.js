@@ -12,27 +12,40 @@ export default function Example() {
     const group = new THREE.Group();
     scene.add(group);
 
+    // Load Texture w/ JS
+    const image = new Image();
+    const blockTexture = new THREE.Texture(image);
+    blockTexture.colorSpace = THREE.SRGBColorSpace;
+
+    image.onload = () => {
+      blockTexture.needsUpdate = true;
+    }
+
+    image.src = '/question-block.png';
+
+    
+
     // Object
     const geometry = new THREE.BoxGeometry(1,1,1);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff0000});
+    const material = new THREE.MeshBasicMaterial({map: blockTexture});
     const cube = new THREE.Mesh(geometry, material);
     
-    cube.position.x = -2;
+    // cube.position.x = -2;
 
     group.add(cube)
 
-    const cube2 = new THREE.Mesh(
-      new THREE.BoxGeometry(1,1,1),
-      new THREE.MeshBasicMaterial({ color: 0x0000ff})
-    )
-    group.add(cube2);
+    // const cube2 = new THREE.Mesh(
+    //   new THREE.BoxGeometry(1,1,1),
+    //   new THREE.MeshBasicMaterial({ color: 0x0000ff})
+    // )
+    // group.add(cube2);
 
-    const cube3 = new THREE.Mesh(
-      new THREE.BoxGeometry(1,1,1),
-      new THREE.MeshBasicMaterial({ color: 0x00ff00})
-    )
-    cube3.position.x = 2;
-    group.add(cube3);
+    // const cube3 = new THREE.Mesh(
+    //   new THREE.BoxGeometry(1,1,1),
+    //   new THREE.MeshBasicMaterial({ color: 0x00ff00})
+    // )
+    // cube3.position.x = 2;
+    // group.add(cube3);
 
     // Camera
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -69,11 +82,11 @@ export default function Example() {
     const clock = new THREE.Clock();
 
     const animate = () => {
-      const elapsedTime = clock.getElapsedTime();
+      // const elapsedTime = clock.getElapsedTime();
 
-      group.rotation.x = Math.sin(elapsedTime);
-      group.position.y = Math.cos(elapsedTime);
-      group.position.x = Math.sin(elapsedTime);
+      // group.rotation.x = Math.sin(elapsedTime);
+      // group.position.y = Math.cos(elapsedTime);
+      // group.position.x = Math.sin(elapsedTime);
 
       camera.position.x = cursor.x * 10;
       camera.position.y = cursor.y * 10;
