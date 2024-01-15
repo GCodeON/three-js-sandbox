@@ -89,22 +89,12 @@ export default function Text3D({display, color}) {
     })
 
 
-    const controls = new OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, canvasRef.current);
 
     controls.target.set(0, 0, 0);
-    controls.update();
+    // controls.update();
 
-    controls.addEventListener('change', () => {renderer.render( scene, camera)})
-
-
-    // const cursor = {
-    //   x: 0,
-    //   y: 0
-    // }
-    // window.addEventListener('mousemove', (event) => {
-    //   cursor.x = - (event.clientX / window.innerWidth - 0.5);
-    //   cursor.y = event.clientY / window.innerHeight - 0.5;
-    // })
+    // controls.addEventListener('change', () => {renderer.render( scene, camera)})
 
 
     window.addEventListener( 'resize', () => {
@@ -118,8 +108,8 @@ export default function Text3D({display, color}) {
 
 
     const animate = () => {
-      // camera.position.x = cursor.x * 200;
-      // camera.position.y = cursor.y * 200;
+
+      controls.update();
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="home">
       <Example></Example>
-      <Text3D display={'Gerardo Soto'} color={'red'}/>
+      {/* <Text3D display={'Gerardo Soto'} color={'red'}/> */}
     </main>
   )
 }

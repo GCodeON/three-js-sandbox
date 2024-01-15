@@ -1,7 +1,6 @@
 'use client'
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import gsap from 'gsap';
 
 export default function Example() {
   const canvasRef = useRef();
@@ -69,27 +68,16 @@ export default function Example() {
 
     const clock = new THREE.Clock();
 
-    // gsap.to(cube.position, {
-    //   x       : 2,
-    //   duration: 1,
-    //   delay   : 1
-    // })
-    // gsap.to(cube.position, {
-    //   x       : -2,
-    //   duration: 1,
-    //   delay   : 2
-    // })
-
     const animate = () => {
-      // const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = clock.getElapsedTime();
 
-      // group.rotation.x = Math.sin(elapsedTime);
-      // group.position.y = Math.cos(elapsedTime);
-      // group.position.x = Math.sin(elapsedTime);
+      group.rotation.x = Math.sin(elapsedTime);
+      group.position.y = Math.cos(elapsedTime);
+      group.position.x = Math.sin(elapsedTime);
 
       camera.position.x = cursor.x * 10;
       camera.position.y = cursor.y * 10;
-      // camera.lookAt(new THREE.Vector3());
+      camera.lookAt(new THREE.Vector3());
 
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
