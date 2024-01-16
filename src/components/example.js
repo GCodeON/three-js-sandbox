@@ -31,9 +31,9 @@ export default function Example() {
     const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // // Helpers
-    // const axesHelper = new THREE.AxesHelper();
-    // scene.add(axesHelper);
+    // Helpers
+    const axesHelper = new THREE.AxesHelper();
+    scene.add(axesHelper);
 
     // Resize
     window.addEventListener( 'resize', () => {
